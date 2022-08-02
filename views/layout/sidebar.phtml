@@ -1,19 +1,29 @@
 <!--BarraLateral-->
             <aside id="aside">
                 <div class="block-aside" id="login">
+                    <?php if (!isset($_SESSION['user'])):?>
                     <h3>Entrar a la web</h3>
-                    <form action="" method="post">
+                    <?=isset($_SESSION['login'])?'<strong>'.$_SESSION['login'].'</strong>':''?>
+                    <form action="<?=base_url?>usuario/login" method="post">
                         <label for="email">Email</label>
                         <input type="email" name="email">
                         <label for="pass">Contraseña</label>
                         <input type="password" name="pass">
                         <input type="submit" value="Enviar">
                     </form>
-                    <ul>
-                        <li><a href="">Mis pedidos</a></li>
-                        <li><a href="">Gestinar pedidos</a></li>
-                        <li><a href="">gestinar Categorias</a></li>
-                    </ul>
+                    <?php else:?>
+                        <h3><?=$_SESSION['user']->nombre?> <?=$_SESSION['user']->apellidos?></h3>
+                        <ul>
+                            <?php if(isset($_SESSION['admin'])):?>
+                            <li><a href="">Gestinar Categorias</a></li>
+                            <li><a href="">Gestinar Productos</a></li>
+                            <li><a href="">Gestinar Pedidos</a></li>
+                            <?php endif; ?>
+                            <li><a href="">Mis pedidos</a></li>
+                            <li><a href="<?=base_url?>usuario/logout">Cerrar sesion</a></li>
+                        </ul>
+                    <?php endif;?>
+                    <?php Helper::deleteSession('login'); ?>
                 </div>
             </aside>
             <!--Contenido Principal-->

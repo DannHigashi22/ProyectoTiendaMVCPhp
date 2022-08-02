@@ -6,15 +6,21 @@ if (isset($_SESSION['registro'])):?>
 <?php Helper::deleteSession('registro'); ?>
 <form action="<?=base_url?>usuario/insert" method="POST">
     <label for="nombre">Nombre</label>
-    <input type="text" name="nombre" required>
+    <input type="text" name="nombre" >
+    <?php echo isset($_SESSION['errores']['nombre'])? '<strong>'.$_SESSION['errores']['nombre'].'</strong>':'' ?>
 
     <label for="apellidos">Apellidos</label>
-    <input type="text" name="apellidos" required>
+    <input type="text" name="apellidos" >
+    <?php echo isset($_SESSION['errores']['apellidos'])? '<strong>'.$_SESSION['errores']['apellidos'].'</strong>':'' ?>
 
     <label for="email">Email</label>
-    <input type="email" name="email" required>
+    <input type="email" name="email" >
+    <?php echo isset($_SESSION['errores']['email'])? '<strong>'.$_SESSION['errores']['email'].'</strong>':'' ?>
 
     <label for="pass">Contraseña</label>
-    <input type="password" name="pass" required>
+    <input type="password" name="pass" >
+    <?php echo isset($_SESSION['errores']['pass'])? '<strong>'.$_SESSION['errores']['pass'].'</strong>':'' ?>
+
     <input type="submit" value="Registrarse">
 </form>
+<?php Helper::deleteSession('errores'); ?>

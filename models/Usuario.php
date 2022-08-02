@@ -42,10 +42,10 @@ class Usuario{
     }
 
     public function getPass(){
-        return $this->pass;
+        return password_hash($this->db->real_escape_string($this->pass),PASSWORD_BCRYPT,['cost'=>4]);
     }
     public function setPass($pass){
-        $this->pass=password_hash($this->db->real_escape_string($pass),PASSWORD_BCRYPT,['cost'=>4]);
+        $this->pass=$pass;
     }
 
     public function getRol(){
@@ -68,6 +68,22 @@ class Usuario{
         $res=false;
         if ($save) {
           $res=true;  
+        }
+        return $res;
+    }
+
+    public function loginUser(){
+        $res=false;
+        $email=$this->email;
+        $pass=$this->pass;
+        $sql="select * from usuarios where email='$email';";
+        $login=$this->db->query($sql);
+        if ($login && $login->num_rows==1) {
+            $usuario=$login->fetch_object();
+            $verify=password_verify($pass,$usuario->pass);
+            if ($verify) {
+                $res=$usuario;
+            }
         }
         return $res;
     }
