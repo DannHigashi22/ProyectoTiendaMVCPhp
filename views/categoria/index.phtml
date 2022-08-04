@@ -1,0 +1,12 @@
+<h1>Gestionar Categorias</h1>
+<a class="button button-small" href="<?=base_url?>categoria/create">Crear categoria</a>
+<table>
+    <th>Id</th>
+    <th>Nombre</th>
+    <?php while ($categoria=$categorias->fetch_object()) :?>
+    <tr>
+        <td><?=$categoria->id?></td>
+        <td><?=$categoria->nombre?></td>
+    </tr>
+    <?php endwhile; ?>
+</table>

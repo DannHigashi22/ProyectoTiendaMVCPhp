@@ -141,6 +141,17 @@ nav ul li{
     margin-bottom: 5px;
 }
 
+table{
+    text-align: center;
+    width: 100%;
+    border: 1px solid #555;
+}
+td{
+    border-top: 1px solid #ccc;
+    padding: 2px;
+}
+
+
 /*form*/
 label,
 input[type="text"],
@@ -182,14 +193,20 @@ button, .button{
     background: #2979cd;
     border: 1px solid #11608E;
     cursor: pointer;
+    /*margin: 0px auto;*/
 }
 .button{
     background: #33AE3D;
     color: white !important;
     text-decoration: none;
-    width: fit-content;
-    margin: 0px auto;
+    /* width: fit-content; */
+    /* margin: 0px auto; */
 }
+
+.button-small{
+    margin-bottom: 20px;
+}
+
 label,
 input[type="button"],
 input[type="submit"],

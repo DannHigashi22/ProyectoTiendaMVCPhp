@@ -20,7 +20,7 @@ if (isset($_GET['controller'])) {
     $nameController=controller_default;
 }else{
     show_error();
-    exit();
+    //exit();
 }
 if (@class_exists($nameController)) {
     $controlador =new $nameController();

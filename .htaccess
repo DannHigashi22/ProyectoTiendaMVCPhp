@@ -1,7 +1,7 @@
 <IfModule mod_rewrite.c>
 ##activar rewrite
 RewriteEngine on
-ErrorDocument 404 http://localhost/master%20PHP2022/9-proyectoMvcPhp/Error
+ErrorDocument 404 http://localhost/master%20PHP2022/9-proyectoMvcPhp/Error/index
 
 ##condiciones para rewrite
 RewriteCond %{SCRIPT_FILENAME} !-d

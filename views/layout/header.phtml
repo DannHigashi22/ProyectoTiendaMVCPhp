@@ -12,16 +12,19 @@
         <header id="header">
             <div id="logo">
                 <img src="<?=base_url?>assets/img/camiseta.png" alt="LogoDeBibrant-ShopCL">
-                <a href="index.php">
+                <a href="<?=base_url?>">
                     <h1>Bibrant-ShopCl</h1>
                 </a>
             </div>
         </header>
         <!--Menu-->
+        <?php $cat_nav=Helper::showcate();?>
         <nav id="nav">
             <ul>
                 <li><a href="">inicio</a></li>
-                <li><a href="">Categoria</a></li>
+                <?php while ($nav_cat=$cat_nav->fetch_object()):?>
+                <li><a href="<?=base_url?>"><?=$nav_cat->nombre?></a></li>
+                <?php endwhile;?>
             </ul>
         </nav>
         <main id="content">
