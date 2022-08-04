@@ -199,12 +199,19 @@ button, .button{
     background: #33AE3D;
     color: white !important;
     text-decoration: none;
-    /* width: fit-content; */
+    width: fit-content;
     /* margin: 0px auto; */
 }
 
 .button-small{
     margin-bottom: 20px;
+}
+
+.button-orange{
+    background: orange;
+}
+.button-red{
+    background: red ;
 }
 
 label,

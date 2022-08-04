@@ -1,0 +1,25 @@
+<h1>Gestion de Productos </h1>
+<a class="button button-small" href="<?=base_url?>producto/create">Crear producto</a>
+
+<?php if(isset($_SESSION['producto'])):?>
+    <?="<strong>".$_SESSION['producto']."</strong>" ?>
+<?php endif;?>
+<table>
+    <th>Id</th>
+    <th>Nombre</th>
+    <th>Precio</th>
+    <th>Stock</th>
+    <th>Acciones</th>
+    <?php while ($product=$productos->fetch_object()) :?>
+    <tr>
+        <td><?=$product->id?></td>
+        <td><?=$product->nombre?></td>
+        <td><?=$product->precio?></td>
+        <td><?=$product->stock?></td>
+        <td><a href="<?=base_url?>producto/edit&id=<?=$product->id?>" class="button button-orange" >Editar</a></td>
+        <td><a href="<?=base_url?>producto/delete&id=<?=$product->id?>" class="button button-red">Eliminar</a></td>
+    </tr>
+    <?php endwhile; ?>
+</table>
+
+<?php Helper::deleteSession('producto');?>

@@ -10,7 +10,7 @@ class CategoriaController{
 
     public function create(){
         Helper::isAdmin();
-        require_once "views/categoria/create.php";
+        require_once "views/categoria/create.phtml";
     }
 
     public function save(){
