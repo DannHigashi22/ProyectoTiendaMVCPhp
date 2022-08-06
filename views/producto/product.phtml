@@ -1,0 +1,12 @@
+<?php if(isset($producto)):?>
+    <h1>Producto <?=$producto->nombre?></h1>
+        <?php if ($producto->imagen != null):?>
+            <img src="<?=base_url?>uploads/images/<?=$producto->imagen?>" alt="Articulo">
+        <?php else :?>
+            <img src="<?=base_url?>assets/img/camiseta.png" alt="">
+        <?php endif;?>
+            <p><?=$producto->descripcion;?></p>
+            <p><?=$producto->precio?> CLP</p>
+<?php else:?>
+    <h1>Producto no existente</h1>
+<?php endif;?>

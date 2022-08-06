@@ -1,0 +1,23 @@
+<?php if(isset($Bycategoria)):?>
+<h1>Productos "<?=$Bycategoria->nombre?>"</h1>
+    <?php if($ProductByCat->num_rows != 0):?>
+        <?php while ($prod=$ProductByCat->fetch_object()):?>
+            <div class="product">
+                <a href="<?=base_url?>producto/product&id=<?=$prod->id?>">
+                    <?php if ($prod->imagen != null):?>
+                        <img src="<?=base_url?>uploads/images/<?=$prod->imagen?>" alt="Articulo">
+                    <?php else :?>
+                        <img src="<?=base_url?>assets/img/camiseta.png" alt="">
+                    <?php endif;?>
+                    <h2><?=$prod->nombre;?></h2>
+                </a>
+                <p><?=$prod->precio?> CLP</p>
+                <a href="" class="button">Añadir al Carro</a>
+            </div>
+        <?php endwhile;?>
+    <?php else:?>
+        <p>No hay Productos para mostrar</p>
+    <?php endif;?>
+<?php else:?>
+<h1>Categoria no existente</h1>
+<?php endif;?>
