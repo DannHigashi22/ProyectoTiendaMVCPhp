@@ -23,7 +23,7 @@
             <ul>
                 <li><a href="">inicio</a></li>
                 <?php while ($nav_cat=$cat_nav->fetch_object()):?>
-                <li><a href="<?=base_url?>"><?=$nav_cat->nombre?></a></li>
+                <li><a href="<?=base_url?>categoria/read&id=<?=$nav_cat->id?>"><?=$nav_cat->nombre?></a></li>
                 <?php endwhile;?>
             </ul>
         </nav>

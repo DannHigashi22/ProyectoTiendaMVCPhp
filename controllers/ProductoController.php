@@ -2,8 +2,19 @@
 require_once 'models/producto.php';
 class ProductoController{
     public function index(){
-        //renderizar vista
+        $producto =new Producto();
+        $productos=$producto->getRand(6);
         require_once 'views/producto/destacado.phtml';
+    }
+
+    public function product(){
+        if (isset($_GET['id'])) {
+            $id=$_GET['id'];
+            $producto=new Producto();
+            $producto->setId($id);
+            $producto=$producto->getForId();
+            require_once 'views/producto/product.phtml';
+        }
     }
 
     public function gestion(){
@@ -38,21 +49,29 @@ class ProductoController{
                 $producto->setStock($stock);
 
                 //guardar imagen
-                $file=$_FILES['imagen'];
-                $file_name=$file['name'];
-                $type=$file['type'];
-                if ($type=="image/jpg" || $type=="image/jpeg" || $type=="image/png" || $type=="image/gif") {
-                    if (!is_dir('uploads/images')) {
-                        mkdir('uploads/images',0777,true);
-                        move_uploaded_file($file['tmp_name'],'uploads/images'.$file_name);
+                if (isset($_FILES['imagen'])) {
+                    $file=$_FILES['imagen'];
+                    $file_name=$file['name'];
+                    $type=$file['type'];
+                    if ($type=="image/jpg" || $type=="image/jpeg" || $type=="image/png" || $type=="image/gif") {
+                        if (!is_dir('uploads/images')) {
+                            mkdir('uploads/images',0777,true);
+                        }
+                        move_uploaded_file($file['tmp_name'],'uploads/images/'.$file_name);
                         $producto->setImagen($file_name);
                     }
+                }
+                if (isset($_GET['id'])) {
+                    $id=$_GET['id'];
+                    $producto->setId($id);
+                    $save=$producto->update();
+                }else {
                     $save=$producto->createProduct();
-                    if ($save) {
+                }
+                if ($save) {
                     $_SESSION['producto']="Registrado completamente";
-                    }else {
+                }else {
                     $_SESSION['producto']="failed";
-                    }
                 }
             }else {
                 $_SESSION['producto']="valores incorrectos";

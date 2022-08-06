@@ -1,25 +1,15 @@
-                <h1>Productos destacados</h1>
-                <div class="product">
-                    <img src="<?=base_url?>assets/img/camiseta.png" alt="Articulo">
-                    <h2>Camiseta Azul Holgada</h2>
-                    <p>30.000 CLP</p>
-                    <a href="" class="button">Añadir al Carro</a>
-                </div>
-                <div class="product">
-                    <img src="<?=base_url?>assets/img/camiseta.png" alt="Articulo">
-                    <h2>Camiseta Azul Holgada</h2>
-                    <p>30.000 CLP</p>
-                    <a href="" class="button">Añadir al Carro</a>
-                </div>
-                <div class="product">
-                    <img src="<?=base_url?>assets/img/camiseta.png" alt="Articulo">
-                    <h2>Camiseta Azul Holgada</h2>
-                    <p>30.000 CLP</p>
-                    <a href="" class="button" >Añadir al Carro</a>
-                </div>
-                <div class="product">
-                    <img src="<?=base_url?>assets/img/camiseta.png" alt="Articulo">
-                    <h2>Camiseta Azul Holgada</h2>
-                    <p>30.000 CLP</p>
-                    <a href="" class="button">Añadir al Carro</a>
-                </div>
+    <h1>Algunos de nuestros productos</h1>
+    <?php while ($prodRand=$productos->fetch_object()):?>
+    <div class="product">
+        <a href="<?=base_url?>producto/product&id=<?=$prodRand->id?>">
+            <?php if ($prodRand->imagen != null):?>
+                <img src="<?=base_url?>uploads/images/<?=$prodRand->imagen?>" alt="Articulo">
+            <?php else :?>
+                <img src="<?=base_url?>assets/img/camiseta.png" alt="">
+            <?php endif;?>
+            <h2><?=$prodRand->nombre;?></h2>
+        </a>    
+        <p><?=$prodRand->precio?> CLP</p>
+        <a href="" class="button">Añadir al Carro</a>
+    </div>
+    <?php endwhile;?>

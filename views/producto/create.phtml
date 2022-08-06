@@ -1,6 +1,6 @@
 <?php if(isset($edit) && isset($prod) && is_object($prod)):?>
     <h1>Editar Producto <?=$prod->nombre?></h1>
-    <?php $url=base_url."producto/edit&id=".$prod->id;?>
+    <?php $url=base_url."producto/insert&id=".$prod->id;?>
 <?php else:?>
     <h1>Crear Nuevo Producto</h1>
     <?php $url=base_url."producto/insert";?>
@@ -9,26 +9,29 @@
 <form action="<?=$url?>" method="post" enctype="multipart/form-data">
 
 <label for="nombre">Nombre</label>
-<input type="text" name="nombre">
+<input type="text" name="nombre" value="<?=isset($prod) && is_object($prod)?$prod->nombre:''?>">
 
 <label for="descripcion">Descripcion</label>
-<textarea name="descripcion" cols="30" rows="10"></textarea>
+<textarea name="descripcion" cols="30" rows="10"><?=isset($prod) && is_object($prod)?$prod->descripcion:''?></textarea>
 
 <label for="precio">Precio</label>
-<input type="text" name="precio">
+<input type="text" name="precio" value="<?=isset($prod) && is_object($prod)?$prod->precio:''?>">
 
 <label for="stock">Stock</label>
-<input type="number" name="stock">
+<input type="number" name="stock" value="<?=isset($prod) && is_object($prod)?$prod->stock:''?>">
 
 <label for="categoria">Categoria</label>
 <?php $cat=Helper::showCate();?>
 <select name="categoria">
     <?php while ($navcat=$cat->fetch_object()):?>
-    <option value="<?=$navcat->id?>"><?=$navcat->nombre?></option>
+    <option value="<?=$navcat->id?>" <?=isset($prod) && is_object($prod) && $navcat->id == $prod->categoria_id?'selected' :''?> ><?=$navcat->nombre?></option>
     <?php endwhile;?>
 </select>
 
 <label for="imagen">Imagen</label>
+<?php if(isset($prod) && is_object($prod) && !empty($prod->imagen)):?>
+    <img src="<?=base_url?>uploads/images/<?=$prod->imagen?>" class="thumb">
+<?php endif;?>
 <input type="file" name="imagen">
 
 <input type="submit" value="Crear Producto">
