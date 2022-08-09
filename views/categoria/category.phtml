@@ -12,7 +12,7 @@
                     <h2><?=$prod->nombre;?></h2>
                 </a>
                 <p><?=$prod->precio?> CLP</p>
-                <a href="" class="button">Añadir al Carro</a>
+                <a href="<?=base_url?>carrito/add&id=<?=$prod->id?>" class="button">Añadir al Carro</a>
             </div>
         <?php endwhile;?>
     <?php else:?>

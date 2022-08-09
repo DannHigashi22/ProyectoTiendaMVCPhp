@@ -10,6 +10,6 @@
             <h2><?=$prodRand->nombre;?></h2>
         </a>    
         <p><?=$prodRand->precio?> CLP</p>
-        <a href="" class="button">Añadir al Carro</a>
+        <a href="<?=base_url?>carrito/add&id=<?=$prodRand->id?>" class="button">Añadir al Carro</a>
     </div>
     <?php endwhile;?>

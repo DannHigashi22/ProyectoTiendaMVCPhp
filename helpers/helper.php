@@ -21,5 +21,20 @@ class Helper{
         $categorias=$cat->getAll();
         return $categorias;
     }
+
+    public static function statsCarrito(){
+        $stats=array(
+            'productos'=> 0,
+            'total'=>0
+        );
+        if (isset($_SESSION['carrito'])) {
+            $stats['productos']=count($_SESSION['carrito']);
+           foreach ($_SESSION['carrito'] as $producto) {
+               $stats['total']+=$producto['precio']*$producto['unidad'];
+           }
+        }
+
+        return $stats;
+    }
 }
 ?>

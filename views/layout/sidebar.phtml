@@ -1,5 +1,13 @@
 <!--BarraLateral-->
             <aside id="aside">
+            <div class="block-aside" id="login">
+                <ul>
+                    <?php $stats=Helper::statsCarrito()?>
+                    <li><a href="<?=base_url?>carrito/index">Productos (<?=$stats['productos']?>)</a></li>
+                    <li><a href="<?=base_url?>carrito/index">Total:$<?=$stats['total']?> </a></li>
+                    <li><a href="<?=base_url?>carrito/index">Ver carrito</a></li>
+                </ul>
+            </div>
                 <div class="block-aside" id="login">
                     <?php if (!isset($_SESSION['user'])):?>
                     <h3>Entrar a la web</h3>

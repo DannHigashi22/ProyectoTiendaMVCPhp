@@ -1,0 +1,26 @@
+<h1>Carrito de la compra</h1>
+<table>
+    <th>Imagen</th>
+    <th>Nombre</th>
+    <th>Precio</th>
+    <th>Unidades</th>
+    <?php foreach ($carrito as $indice =>$producto) :?>
+    <tr>
+        <td>
+            <?php if ($producto['producto']->imagen != null):?>
+                <img src="<?=base_url?>uploads/images/<?=$producto['producto']->imagen?>" class="img-carrito" alt="Articulo">
+            <?php else :?>
+                <img src="<?=base_url?>assets/img/camiseta.png" class="img-carrito" alt="imagen generica">
+            <?php endif;?>
+        </td>
+        <td><a href="<?=base_url?>producto/product&id=<?=$producto['producto']->id?>"><?=$producto['producto']->nombre?></a></td>
+        <td><?=$producto['producto']->precio?></td>
+        <td><?=$producto['unidad']?></td>
+    </tr>
+    <?php endforeach; ?>
+</table>
+<div class=total-carrito>
+    <?php $stats=Helper::statsCarrito();?>
+    <h3>Precio total:$<?=$stats['total']?></h3>
+    <a href="" class="button button-pedido" >Comprar</a>
+</div>

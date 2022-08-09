@@ -144,7 +144,7 @@ nav ul li{
 table{
     text-align: center;
     width: 100%;
-    border: 1px solid #555;
+    border: 1px solid #ccc;
 }
 td{
     border-top: 1px solid #ccc;
@@ -197,7 +197,7 @@ button, .button{
     background: #2979cd;
     border: 1px solid #11608E;
     cursor: pointer;
-    /*margin: 0px auto;*/
+    /* margin: 0px auto; */
 }
 .button{
     background: #33AE3D;
@@ -276,6 +276,40 @@ button{
     margin-bottom: 10px;
 }
 
+.img-carrito{
+    height: 80px;
+}
+
+#detail-product{
+    width: 100%;
+}
+#detail-product .img{
+    display: block;
+    width: 45%;
+    float:left;
+}
+#detail-product img{
+    display: block;
+    width: 100%;
+    float:left;
+}
+#detail-product .button{
+    margin: 0px auto;
+    text-align: center;
+}
+#detail-product .data{
+    width: 50%;
+    float:left;
+}
+#detail-product .description{
+    margin-bottom: 20px;
+}
+#detail-product .price{
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #444;
+}
+
 /*footer*/
 #footer{
     clear: both;
@@ -287,3 +321,20 @@ button{
     border-top: 4px solid #01b1ea;
 }
 
+/*carrito*/
+.total-carrito{
+    width: 350px;
+    margin-top: 10px;
+    float: right;
+}
+.total-carrito h3{
+    display: block;
+    float: left;
+    margin-top: 5px;
+}
+.button-pedido{
+    display: block;
+    float: right;
+    width: 100px;
+    text-align: center;
+}
