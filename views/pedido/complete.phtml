@@ -1,0 +1,7 @@
+<?php if(isset($_SESSION['pedido']) && $_SESSION['pedido']=='Complete'):?>
+    <h1>Pedido se a confirmado</h1>
+    <p>Tu pedido ha sido guardado con existo, un vez realizada la transferencia con el total del pedido, sera procesado y enviado.</p>
+<?php else:?>
+    <h1>Pedido no Generado</h1>
+    <p>Su pedido no ha sido generado con exito, intente mas tarde</p>
+<?php endif;?>
