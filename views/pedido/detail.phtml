@@ -1,12 +1,15 @@
-<?php if(isset($_SESSION['pedido']) && $_SESSION['pedido']=='Complete'):?>
-    <h1>Pedido se a confirmado</h1>
-    <p>Tu pedido ha sido guardado con existo, un vez realizada la transferencia a N° 91265467379 con el total del pedido
-    , sera procesado y enviado.</p>
-    <br>
-    <?php if (isset($lastPedido)):?>
+<h1>Detalle del pedido</h1>
+<?php if (isset($_SESSION['admin'])):?>
+    <h3>Cambiar detalle del pedido:</h3>
+    <form action="" method="post">
+        <select name="" id="">
+        </select>
+    </form>
+<?php endif;?>
     <h3>Datos del pedido:</h3>
-        Numero de pedido: v<?=$lastPedido->id?>bsh-01<br>
-        Total a pagar:<?=$lastPedido->coste?>$ <br>
+        Numero de pedido: v<?=$pedido->id?>bsh-01<br>
+        Total a pagar: <?=$pedido->coste?>$ <br>
+        Direccion: <?=$pedido->ciudad?> - <?=$pedido->comuna?> - <?=$pedido->direccion?> <br>
         Productos:
         <table>
             <th>Imagen</th>
@@ -28,8 +31,3 @@
             </tr>
             <?php endwhile; ?>
         </table>
-    <?php endif; ?>
-<?php else:?>
-    <h1>Pedido no Generado</h1>
-    <p>Su pedido no ha sido generado con exito, intente mas tarde</p>
-<?php endif;?>

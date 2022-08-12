@@ -41,7 +41,51 @@ class PedidoController{
     }
 
     public function complete(){
+        if (isset($_SESSION['user'])) {
+            $usuario_id=$_SESSION['user']->id;
+            $pedido=new Pedido();
+            $pedido->setUsuario_id($usuario_id);
+            
+            $lastPedido=$pedido->getLastUser();
+            $detallePedido=$pedido->getOrderDetalle($lastPedido->id);
+        }
+        
         require_once 'views/pedido/complete.phtml';
+    }
+
+    public function myOrders(){
+        Helper::isLogged();
+        $usuario_id=$_SESSION['user']->id;
+        $pedidos=new Pedido();
+        $pedidos->setUsuario_id($usuario_id);
+        $pedidos=$pedidos->getAllByUser();
+        require_once 'views/pedido/orders.phtml';
+    }
+
+    public function detail(){
+        Helper::isLogged();
+        if (isset($_GET['id'])) {
+            $id=$_GET['id'];
+            $pedido=new Pedido();
+            $pedido->setId($id);
+            
+            $detallePedido=$pedido->getOrderDetalle($id);
+            $pedido=$pedido->getForId();
+        
+            require_once 'views/pedido/detail.phtml';
+        }else{
+            header("location:".base_url."pedido/myOrders");
+        }
+
+        
+    }
+
+    public function gestion(){
+        Helper::isAdmin();
+        $gestion=true;
+        $pedidos=new Pedido();
+        $pedidos=$pedidos->getAll();
+        require_once 'views/pedido/orders.phtml';
     }
 
 }

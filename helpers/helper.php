@@ -15,6 +15,14 @@ class Helper{
         }
     }
 
+    public static function isLogged(){
+        if (!isset($_SESSION['user'])) {
+            header("Location:".base_url);
+        }else {
+            return true;
+        }
+    }
+
     public static function showCate(){
         require_once 'models/Categoria.php';
         $cat=new Categoria();

@@ -66,9 +66,19 @@ class Pedido{
 
     public function getAll(){
         $sql="Select * from pedidos order by id desc";
-        $productos=$this->db->query($sql);
-        if ($productos) {
-            return $productos;
+        $pedido=$this->db->query($sql);
+        if ($pedido) {
+            return $pedido;
+        }else {
+            return false;
+        }
+    }
+
+    public function getAllByUser(){
+        $sql="Select * from pedidos where usuario_id={$this->getUsuario_id()} order by id desc";
+        $pedido=$this->db->query($sql);
+        if ($pedido) {
+            return $pedido;
         }else {
             return false;
         }
@@ -76,13 +86,34 @@ class Pedido{
 
     public function getForId(){
         $sql="Select * from pedidos where id={$this->getId()}";
-        $producto=$this->db->query($sql);
-        if ($producto) {
-            return $producto->fetch_object();
+        $pedido=$this->db->query($sql);
+        if ($pedido) {
+            return $pedido->fetch_object();
         }else {
             return false;
         }
     }
+
+    public function getLastUser(){
+        $sql="Select p.id,p.coste from pedidos p where p.usuario_id={$this->getUsuario_id()} order by id desc limit 1";
+        $pedido=$this->db->query($sql);
+        if ($pedido) {
+            return $pedido->fetch_object();
+        }else {
+            return false;
+        }
+    }
+
+    public function getOrderDetalle($id){
+        $sql="SELECT p.*, dp.unidades from productos p inner join detalle_pedido dp ON p.id=dp.producto_id where dp.pedido_id=$id;";
+        $detalleP=$this->db->query($sql);
+        if ($detalleP) {
+            return $detalleP;
+        }else {
+            return false;
+        }
+    }
+
 
     public function createPedido(){
         $sql="Insert INTO pedidos Values(null,{$this->getUsuario_id()},'{$this->getCiudad()}','{$this->getComuna()}','{$this->getDireccion()}',{$this->getCoste()},'confirm',curdate(),curtime())";
