@@ -44,5 +44,23 @@ class Helper{
 
         return $stats;
     }
+
+    public static function showstatus($status){
+        switch ($status) {
+            case 'preparation':
+                $status='En preparacion';
+                break;
+            case 'ready':
+                $status='Preparado para envio';
+                break;
+            case 'sended':
+                $status='Enviado';
+                break;
+            default:
+                $status='Pendiente';
+                break;
+        }
+        return $status;
+    }
 }
 ?>

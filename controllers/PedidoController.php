@@ -48,6 +48,7 @@ class PedidoController{
             
             $lastPedido=$pedido->getLastUser();
             $detallePedido=$pedido->getOrderDetalle($lastPedido->id);
+            Helper::deleteSession('carrito');
         }
         
         require_once 'views/pedido/complete.phtml';
@@ -71,8 +72,12 @@ class PedidoController{
             
             $detallePedido=$pedido->getOrderDetalle($id);
             $pedido=$pedido->getForId();
-        
-            require_once 'views/pedido/detail.phtml';
+            if ($detallePedido && $pedido) {
+                require_once 'views/pedido/detail.phtml';
+            }else {
+                header("location:".base_url.'Error/index');
+            }
+            
         }else{
             header("location:".base_url."pedido/myOrders");
         }
@@ -86,6 +91,21 @@ class PedidoController{
         $pedidos=new Pedido();
         $pedidos=$pedidos->getAll();
         require_once 'views/pedido/orders.phtml';
+    }
+
+    public function status(){
+        Helper::isAdmin();
+        if (isset($_POST)) {
+            $pedido_id=isset($_POST['pedido_id'])?$_POST['pedido_id']:false;
+            $estado=isset($_POST['estado'])?$_POST['estado']:false;
+            //update del pedido
+            $pedidoStatus=new Pedido();
+            $pedidoStatus->setId($pedido_id);
+            $pedidoStatus->setEstado($estado);
+            $pedidoStatus->updateOne();
+
+        }
+        header("location:".base_url."pedido/gestion");
     }
 
 }

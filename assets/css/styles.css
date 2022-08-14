@@ -276,10 +276,6 @@ button{
     margin-bottom: 10px;
 }
 
-.img-carrito{
-    height: 80px;
-}
-
 #detail-product{
     width: 100%;
 }
@@ -322,6 +318,9 @@ button{
 }
 
 /*carrito*/
+.img-carrito{
+    height: 80px;
+}
 .total-carrito{
     width: 350px;
     margin-top: 10px;
@@ -337,4 +336,8 @@ button{
     float: right;
     width: 100px;
     text-align: center;
+}
+
+.delete-carrito{
+    float:left;
 }
